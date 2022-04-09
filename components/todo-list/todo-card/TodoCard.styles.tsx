@@ -15,6 +15,13 @@ const todoCardStyles = StyleSheet.create({
     borderRadius: 20,
     paddingVertical: 20,
     paddingHorizontal: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.04,
+    shadowRadius: 5,
   },
   todoTitle: {
     fontFamily: Fonts.PoppinsSemiBold,

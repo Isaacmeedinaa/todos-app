@@ -11,7 +11,15 @@ import { getTodos } from "@store/actions/todos.action-creators";
 import ITodo from "@contracts/ITodo.contract";
 import TodoCard from "./todo-card/TodoCard.view";
 
+// Navigation
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+import RootStackNavigatorParamList from "@navigation/root-stack-navigator/RootStackNavigator.params";
+import RootStackNavigatorScreenNames from "@navigation/root-stack-navigator/RootStackNavigator.screen-names";
+
 const TodoListLogic = () => {
+  const { navigate } =
+    useNavigation<NavigationProp<RootStackNavigatorParamList>>();
+
   const dispatch = useDispatchAction();
 
   const todos = useStateSelector((s) => s.todos.todos);
@@ -24,7 +32,11 @@ const TodoListLogic = () => {
     <TodoCard key={item._id} todo={item} />
   );
 
-  return { todos, renderTodo };
+  const onAddNewNoteBtn = () => {
+    navigate(RootStackNavigatorScreenNames.TODO_FORM);
+  };
+
+  return { todos, renderTodo, onAddNewNoteBtn };
 };
 
 export default TodoListLogic;

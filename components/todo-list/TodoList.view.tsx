@@ -1,7 +1,9 @@
 // React
 import React from "react";
 import { FlatList, View, Text } from "react-native";
-import NewTodoBtnView from "./new-todo-btn/NewTodoBtn.view";
+
+// Safe Area View
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // Logic
 import TodoListLogic from "./TodoList.logic";
@@ -9,8 +11,12 @@ import TodoListLogic from "./TodoList.logic";
 // Styles
 import todoListStyles from "./TodoList.styles";
 
+// Common Components
+import PrimaryBtnView from "../common/primary-btn/PrimaryBtn.view";
+
 const TodoListView: React.FC = () => {
-  const { todos, renderTodo } = TodoListLogic();
+  const { todos, renderTodo, onAddNewNoteBtn } = TodoListLogic();
+  const { bottom } = useSafeAreaInsets();
 
   return (
     <View style={todoListStyles.container}>
@@ -22,7 +28,13 @@ const TodoListView: React.FC = () => {
         data={todos}
         renderItem={renderTodo}
       />
-      <NewTodoBtnView />
+      <View
+        style={[
+          todoListStyles.btnContainer,
+          { marginBottom: bottom > 0 ? 0 : 25 },
+        ]}>
+        <PrimaryBtnView btnText="Add New Note" onBtnPress={onAddNewNoteBtn} />
+      </View>
     </View>
   );
 };

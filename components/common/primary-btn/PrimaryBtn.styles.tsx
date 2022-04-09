@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 // Fonts
 import Fonts from "@styles/fonts.styles";
 
-const newTodoBtnStyles = StyleSheet.create({
+const primaryBtnStyles = StyleSheet.create({
   btn: {
     width: "100%",
     height: 60,
@@ -27,4 +27,4 @@ const newTodoBtnStyles = StyleSheet.create({
   },
 });
 
-export default newTodoBtnStyles;
+export default primaryBtnStyles;
