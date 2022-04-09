@@ -11,3 +11,25 @@ export interface IGetTodos {
 export interface ISetTodos {
   todos: ITodo[];
 }
+
+export interface ICreateTodo {
+  type: TodosActionTypes.CREATE_TODO;
+  title: string;
+  description: string;
+}
+
+export interface IAddTodo {
+  todo: ITodo;
+}
+
+export interface IUpdateTodo {
+  type: TodosActionTypes.UPDATE_TODO;
+  todoId: string;
+  title: string;
+  description: string;
+}
+
+export interface IReplaceTodo {
+  todoId: string;
+  todo: ITodo;
+}

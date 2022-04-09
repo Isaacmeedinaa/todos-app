@@ -6,9 +6,15 @@ import TodosActionTypes from "@store/actions/todos.action-types";
 
 // Workers
 import getTodos from "./workers/getTodos.worker";
+import createTodo from "./workers/createTodo.worker";
+import updateTodo from "./workers/updateTodo.worker";
 
 function* todosWatcher() {
-  yield all([takeEvery(TodosActionTypes.GET_TODOS, getTodos)]);
+  yield all([
+    takeEvery(TodosActionTypes.GET_TODOS, getTodos),
+    takeEvery(TodosActionTypes.CREATE_TODO, createTodo),
+    takeEvery(TodosActionTypes.UPDATE_TODO, updateTodo),
+  ]);
 }
 
 export default todosWatcher;

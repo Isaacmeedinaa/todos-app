@@ -21,6 +21,7 @@ const TodoListView: React.FC = () => {
   return (
     <View style={todoListStyles.container}>
       <FlatList
+        contentContainerStyle={{ paddingBottom: 20 }}
         ListHeaderComponent={
           <Text style={todoListStyles.header}>Todos - ({todos.length})</Text>
         }

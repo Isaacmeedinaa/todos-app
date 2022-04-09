@@ -5,9 +5,11 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import RootStackNavigator from "./root-stack-navigator/RootStackNavigator";
 
+import { navigationRef } from "./RootNavigation";
+
 const Navigator: React.FC = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <RootStackNavigator />
     </NavigationContainer>
   );

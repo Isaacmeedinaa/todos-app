@@ -5,7 +5,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TodosState } from "./todos.types";
 
 // Actions
-import { ISetTodos } from "@store/actions/todos.action";
+import { IAddTodo, ISetTodos, IReplaceTodo } from "@store/actions/todos.action";
 
 const initialState: TodosState = {
   todos: [],
@@ -46,8 +46,16 @@ const todosSlice = createSlice({
     setTodos(state, action: PayloadAction<ISetTodos>) {
       state.todos = action.payload.todos;
     },
-    addTodo(state) {},
-    updateTodo(state) {},
+    addTodo(state, action: PayloadAction<IAddTodo>) {
+      const newTodos = [...state.todos, action.payload.todo];
+      state.todos = newTodos;
+    },
+    replaceTodo(state, action: PayloadAction<IReplaceTodo>) {
+      const todoIdx = state.todos.findIndex(
+        (todo) => todo._id === action.payload.todoId,
+      );
+      state.todos[todoIdx] = action.payload.todo;
+    },
     removeTodo() {},
   },
 });
@@ -63,7 +71,7 @@ export const {
   setIsNotDeletingTodo,
   setTodos,
   addTodo,
-  updateTodo,
+  replaceTodo,
   removeTodo,
 } = todosSlice.actions;
 
