@@ -2,7 +2,12 @@
 import TodosActionTypes from "./todos.action-types";
 
 // Actions
-import { IGetTodos, ICreateTodo, IUpdateTodo } from "./todos.action";
+import {
+  IGetTodos,
+  ICreateTodo,
+  IUpdateTodo,
+  IDeleteTodo,
+} from "./todos.action";
 
 export const getTodos = (): IGetTodos => {
   return {
@@ -28,5 +33,12 @@ export const updateTodo = (
     todoId: todoId,
     title: title,
     description: description,
+  };
+};
+
+export const deleteTodo = (todoId: string): IDeleteTodo => {
+  return {
+    type: TodosActionTypes.DELETE_TODO,
+    todoId: todoId,
   };
 };

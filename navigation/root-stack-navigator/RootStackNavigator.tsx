@@ -19,6 +19,7 @@ import HeaderLeftView from "./header-left/HeaderLeft.view";
 // Screens
 import TodoListScreenView from "@screens/todo-list/TodoListScreen.view";
 import TodoFormScreenView from "@screens/todo-form/TodoFormScreen.view";
+import TodoScreenView from "@screens/todo/TodoScreen.view";
 
 const RootStack = createStackNavigator<RootStackNavigatorParamList>();
 
@@ -39,6 +40,17 @@ const RootStackNavigator: React.FC = () => {
           headerStyle: rootStackNavigatorStyles.headerStyle,
           headerTitleStyle: rootStackNavigatorStyles.headerTitle,
           title: "Todo Form",
+          headerTitleAlign: "left",
+          headerLeft: ({ onPress }) => <HeaderLeftView onPress={onPress} />,
+        }}
+      />
+      <RootStack.Screen
+        name={RootStackNavigatorScreenNames.TODO}
+        component={TodoScreenView}
+        options={{
+          headerStyle: rootStackNavigatorStyles.headerStyle,
+          headerTitleStyle: rootStackNavigatorStyles.headerTitle,
+          title: "Todo",
           headerTitleAlign: "left",
           headerLeft: ({ onPress }) => <HeaderLeftView onPress={onPress} />,
         }}

@@ -8,7 +8,7 @@ const TodoCardLogic = (todoId: string) => {
     useNavigation<NavigationProp<RootStackNavigatorParamList>>();
 
   const onTodoCardPress = () => {
-    navigate(RootStackNavigatorScreenNames.TODO_FORM, { todoId: todoId });
+    navigate(RootStackNavigatorScreenNames.TODO, { todoId: todoId });
   };
 
   return { onTodoCardPress };

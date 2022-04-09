@@ -4,13 +4,13 @@ import { SagaIterator } from "redux-saga/index";
 
 // Action Creators
 import {
-  setIsUpdatingTodo,
-  setIsNotUpdatingTodo,
-  replaceTodo,
+  setIsDeletingTodo,
+  setIsNotDeletingTodo,
+  removeTodo,
 } from "@store/slices/todos.slice";
 
 // Actions
-import { IUpdateTodo } from "@store/actions/todos.action";
+import { IDeleteTodo } from "@store/actions/todos.action";
 
 // API Service
 import todosAPI from "@services/todos.api";
@@ -25,40 +25,34 @@ import { AxiosError, AxiosResponse } from "axios";
 import { navigate } from "@navigation/RootNavigation";
 import RootStackNavigatorScreenNames from "@navigation/root-stack-navigator/RootStackNavigator.screen-names";
 
-function* updateTodo({
-  todoId,
-  title,
-  description,
-}: IUpdateTodo): SagaIterator {
+function* deleteTodo({ todoId }: IDeleteTodo): SagaIterator {
   try {
     // starts the loader
-    yield put(setIsUpdatingTodo());
+    yield put(setIsDeletingTodo());
 
     // Calls the backend API
-    const updateTodoRes: AxiosResponse = yield call(
-      todosAPI.updateTodo,
+    const deleteTodoRes: AxiosResponse = yield call(
+      todosAPI.deleteTodo,
       todoId,
-      title,
-      description,
     );
 
     // Gets the response data and sets it to a variable
-    const todo: ITodo = updateTodoRes.data;
+    const todo: ITodo = deleteTodoRes.data;
 
     // Sets the todos to the Redux state
-    yield put(replaceTodo({ todoId: todo._id, todo: todo }));
+    yield put(removeTodo({ todoId: todo._id }));
 
     // Stops the loader
-    yield put(setIsNotUpdatingTodo());
+    yield put(setIsNotDeletingTodo());
 
-    navigate(RootStackNavigatorScreenNames.TODO, { todoId: todo._id });
+    navigate(RootStackNavigatorScreenNames.TODO_LIST, undefined);
   } catch (err: any) {
     const error: AxiosError = err;
 
-    yield put(setIsNotUpdatingTodo());
+    yield put(setIsNotDeletingTodo());
 
     console.log(error);
   }
 }
 
-export default updateTodo;
+export default deleteTodo;

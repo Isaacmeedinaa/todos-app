@@ -33,3 +33,12 @@ export interface IReplaceTodo {
   todoId: string;
   todo: ITodo;
 }
+
+export interface IDeleteTodo {
+  type: TodosActionTypes.DELETE_TODO;
+  todoId: string;
+}
+
+export interface IRemoveTodo {
+  todoId: string;
+}

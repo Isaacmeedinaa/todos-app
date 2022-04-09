@@ -34,7 +34,7 @@ const TodoListView: React.FC = () => {
           todoListStyles.btnContainer,
           { marginBottom: bottom > 0 ? 0 : 25 },
         ]}>
-        <PrimaryBtnView btnText="Add New Note" onBtnPress={onAddNewNoteBtn} />
+        <PrimaryBtnView btnText="Add New Todo" onBtnPress={onAddNewNoteBtn} />
       </View>
     </View>
   );

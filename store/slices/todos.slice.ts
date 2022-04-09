@@ -5,7 +5,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TodosState } from "./todos.types";
 
 // Actions
-import { IAddTodo, ISetTodos, IReplaceTodo } from "@store/actions/todos.action";
+import {
+  IAddTodo,
+  ISetTodos,
+  IReplaceTodo,
+  IRemoveTodo,
+} from "@store/actions/todos.action";
 
 const initialState: TodosState = {
   todos: [],
@@ -56,7 +61,12 @@ const todosSlice = createSlice({
       );
       state.todos[todoIdx] = action.payload.todo;
     },
-    removeTodo() {},
+    removeTodo(state, action: PayloadAction<IRemoveTodo>) {
+      const newTodos = state.todos.filter(
+        (todo) => todo._id !== action.payload.todoId,
+      );
+      state.todos = newTodos;
+    },
   },
 });
 

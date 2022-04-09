@@ -66,6 +66,21 @@ const todosAPI = {
       config,
     );
   },
+  deleteTodo: async (todoId: string) => {
+    const config: AxiosRequestConfig = {
+      headers: {
+        "Content-Type": "application/json",
+        Accepts: "application/json",
+      },
+      timeout: 30000,
+      timeoutErrorMessage: "An error occurred. Please try again later.",
+    };
+
+    return await axios.delete(
+      `${URL}${TodoAPIEndpoints.DELETE_TODO}${todoId}`,
+      config,
+    );
+  },
 };
 
 export default todosAPI;
